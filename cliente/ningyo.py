@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import requests
 import base64
+import os
 
 #http://192.168.15.103:5000
 
@@ -98,8 +99,6 @@ def update_tela(linkTela):
             f = open(i, 'wb')
             f.write(base64.b64decode(arquivo["arq"].encode()))
             f.close()
-            
-
 
     window.close()
 
@@ -121,6 +120,11 @@ while True:
         if len(event.split("-")[1].strip()) > 0:
             update_tela(event.split("-")[1])
 
+for imgD in os.listdir(os.getcwd()):
+    try:
+        if not imgD == "ningyo.py":
+            os.remove(imgD)
+    except:
+        pass
 window.close()
 
-#sg.Column().
